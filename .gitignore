@@ -1,20 +1,41 @@
-# Python cache
+# Python cache / build
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# Large media & generated data (do NOT push)
-video/
-final_videos/
-final_audios/
-new_jsons/
-final_jsons/
+# ---------- PROJECT DATA FOLDERS ----------
+
+# video/  → user puts raw .mp4 here
+video/*
+!video/.gitkeep
+
+# final_videos/  → renamed videos
+final_videos/*
+!final_videos/.gitkeep
+
+# final_audios/  → extracted .mp3
+final_audios/*
+!final_audios/.gitkeep
+
+# new_jsons/  → raw Whisper JSON
+new_jsons/*
+!new_jsons/.gitkeep
+
+# final_jsons/  → merged JSON chunks
+final_jsons/*
+!final_jsons/.gitkeep
+
+# ---------- GENERATED FILES ----------
+
+# embeddings dataframe
 final_embeddings.joblib
 
-# Generated text files
+# last prompt + answer
 prompt.txt
 response.txt
 
-# Environments
+# ---------- ENVIRONMENTS ----------
 .env
 .venv/
 venv/
