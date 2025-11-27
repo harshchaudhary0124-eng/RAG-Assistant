@@ -1,0 +1,21 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Large media & generated data (do NOT push)
+video/
+final_videos/
+final_audios/
+new_jsons/
+final_jsons/
+final_embeddings.joblib
+
+# Generated text files
+prompt.txt
+response.txt
+
+# Environments
+.env
+.venv/
+venv/
+env/
