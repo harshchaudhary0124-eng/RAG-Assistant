@@ -1,20 +1,3 @@
-"""
-merge_chunks.py
-
-Reads JSON transcript files from the `new_jsons` folder and merges
-every `n` small chunks into a larger chunk.
-
-For each input file:
-- Group `chunks` into batches of size `n`.
-- For each group, create a new chunk with:
-    - number  : taken from the first original chunk
-    - title   : taken from the first original chunk
-    - start   : start time of the first chunk in the group
-    - end     : end time of the last chunk in the group
-    - text    : concatenation of all texts in the group
-- Save the merged result into `final_jsons/<same_filename>.json`.
-"""
-
 import json
 import math
 import os
@@ -26,8 +9,7 @@ def merge_chunks_in_folder(
     group_size: int = 5,
 ) -> None:
     """
-    Merge chunks from all JSON files in `input_folder` into bigger chunks
-    of size `group_size`, and write the result into `output_folder`.
+    Merging all small chunks from all JSON files in "new_jsons" folder into bigger chunks, and write the result into "final_jsons".
     """
     os.makedirs(output_folder, exist_ok=True)
 
@@ -65,9 +47,9 @@ def merge_chunks_in_folder(
         output_path = os.path.join(output_folder, filename)
         with open(output_path, "w", encoding="utf-8") as json_file:
             json.dump({"chunks": new_chunks, "text": data["text"]},
-                      json_file,
-                      ensure_ascii=False,
-                      indent=2)
+                    json_file,
+                    ensure_ascii=False,
+                    indent=2)
 
 
 if __name__ == "__main__":

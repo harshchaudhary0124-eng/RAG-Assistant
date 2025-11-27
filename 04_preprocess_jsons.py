@@ -1,22 +1,3 @@
-"""
-preprocess_jsons.py
-
-This script:
-1. Reads all JSON files from the `final_jsons` folder.
-2. Sends each chunk's text to an embedding API (Ollama: bge-m3).
-3. Attaches the embedding + a unique chunk_id to each chunk.
-4. Stores all chunks in a dataframe and saves it as `final_embeddings.joblib`.
-
-Output columns in DataFrame:
-- number
-- title
-- start
-- end
-- text
-- chunk_id
-- embedding
-"""
-
 import json
 import os
 import requests
@@ -27,8 +8,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 def create_embedding(text_list):
     """
-    Sends a list of text strings to Ollama's embedding endpoint
-    and returns a list of embedding vectors.
+    Here, We are sending a list of text strings to Ollama's embedding endpoint and returns a list of embedding vectors.
     """
     response = requests.post(
         "http://localhost:11434/api/embed",
@@ -41,9 +21,9 @@ def create_embedding(text_list):
 
 
 def process_json_files(input_folder: str = "final_jsons",
-                       output_file: str = "final_embeddings.joblib") -> None:
+                    output_file: str = "final_embeddings.joblib") -> None:
     """
-    Converts all JSON chunk files into a consolidated DataFrame
+    Converting all JSON chunk files into a consolidated DataFrame
     containing chunk metadata and embeddings.
     """
     json_files = os.listdir(input_folder)
@@ -61,10 +41,10 @@ def process_json_files(input_folder: str = "final_jsons",
 
         print(f"Creating embeddings for {file_name}")
 
-        # Create embeddings in batch for all text inside this JSON
+        # Creating embeddings in batch for all text inside this JSON
         embeddings = create_embedding([c["text"] for c in content["chunks"]])
 
-        # Attach metadata + embeddings + unique chunk ID
+        # Attaching metadata ,embeddings, unique chunk ID
         for i, chunk in enumerate(content["chunks"]):
             chunk["chunk_id"] = chunk_id
             chunk["embedding"] = embeddings[i]
@@ -72,10 +52,10 @@ def process_json_files(input_folder: str = "final_jsons",
 
             all_chunks.append(chunk)
 
-    # Convert list of dicts → DataFrame
+    # Converting list of dicts into DataFrame
     df = pd.DataFrame.from_records(all_chunks)
 
-    # Save embeddings dataframe
+    # Saving embeddings dataframe
     joblib.dump(df, output_file)
     print(f"\nSaved final embeddings to: {output_file}")
 

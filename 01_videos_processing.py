@@ -1,44 +1,26 @@
-"""
-videos_processing.py
-
-1. Read all video files from the `video` folder.
-2. Rename and copy them into the `final_videos` folder.
-   - New filename format: "<number> <title>.mp4"
-   - `number` and `title` are parsed from the original filename.
-3. Extract audio from each MP4 file in `final_videos` using ffmpeg and
-   save it as MP3 in the `final_audios` folder.
-"""
-
 import os
 import shutil
 import subprocess
 
 
 def prepare_final_videos(input_folder: str = "video",
-                         output_folder: str = "final_videos") -> None:
+                        output_folder: str = "final_videos") -> None:
     """
-    Copy videos from `input_folder` to `output_folder` with a cleaned name.
-
-    The script expects filenames in the format:
-        something_<title>#<number>_something.mp4
-
+    Preprocessing the raw videos for "video" folder and then cleaning and saving to "final_videos" folder .
+    
     Example:
         SSYouTube.online_CSS Exercise 5 - Design this Layout#37_480p.mp4
     becomes:
         37 CSS Exercise 5 - Design this Layout.mp4
     """
-    # List all files in the source folder
+    # Listing all files in the source folder
     files = os.listdir(input_folder)
 
-    # Create the output folder if it doesn't exist
+    # Creating the output folder if it doesn't exist
     os.makedirs(output_folder, exist_ok=True)
 
     for file in files:
-        # Extract number and title from the original filename
-        # Example split:
-        #   part = file.split("_")[1] -> "CSS Exercise 5 - Design this Layout#37"
-        #   title = part.split("#")[0] -> "CSS Exercise 5 - Design this Layout"
-        #   number = part.split("#")[1] -> "37"
+
         part = file.split("_")[1]
         title = part.split("#")[0]
         number = part.split("#")[1]
@@ -55,12 +37,12 @@ def prepare_final_videos(input_folder: str = "video",
 
 
 def extract_audio_from_videos(video_folder: str = "final_videos",
-                              audio_folder: str = "final_audios") -> None:
+                            audio_folder: str = "final_audios") -> None:
     """
-    Convert all .mp4 files in `video_folder` to .mp3 files in `audio_folder`
+    Converting all .mp4 files in "final_videos" folder to .mp3 files in "final_audios" folder for translating and transcribing
     using ffmpeg.
     """
-    # Create the output folder if it doesn't exist
+    # Creating the output folder if it doesn't exist
     os.makedirs(audio_folder, exist_ok=True)
 
     for video in os.listdir(video_folder):
@@ -74,10 +56,6 @@ def extract_audio_from_videos(video_folder: str = "final_videos",
 
         print(f"Converting {input_path} → {output_path}")
 
-        # ffmpeg command:
-        # -i  : input file
-        # -vn : disable video, keep only audio
-        # -ab : audio bitrate
         subprocess.run(
             [
                 "ffmpeg",
@@ -86,7 +64,7 @@ def extract_audio_from_videos(video_folder: str = "final_videos",
                 "-ab", "192k",
                 output_path,
             ],
-            check=False,  # set to True if you want the script to raise on error
+            check=False, 
         )
 
 

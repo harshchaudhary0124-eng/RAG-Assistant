@@ -1,0 +1,7 @@
+numpy
+pandas
+requests
+joblib
+scikit-learn
+openai-whisper
+ffmpeg-python
