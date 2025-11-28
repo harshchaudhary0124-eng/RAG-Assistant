@@ -1,7 +1,7 @@
 # Your anytime anywhere deployable - RAG Assistant is HERE
 
 Hello everyone 
-Welcome to this project — a fully local **Retrieval-Augmented Generation (RAG) Assistant** designed for the **Web Development Course**.
+Welcome to this project — a fully local **Retrieval-Augmented Generation (RAG) Assistant** designed for the Retrieval of **Course/Project**.
 
 This system can **understand your question**, find **exact video segments** (video number + timestamps), and answer using a **local LLM** running on your machine.  
 Everything is done using a **self-built pipeline** involving Whisper, ffmpeg, Cosine Similarity, Embeddings, and Ollama.
@@ -108,29 +108,37 @@ This keeps your repo clean, legal, and easy for others to use.
 ##  Here's how I have used this RAG ASSISTANT
 
    *I have stored all my raw, un-cleaned videos in `video` folder*
+<img width="1428" height="477" alt="video" src="https://github.com/user-attachments/assets/2377d527-438b-4040-a5e6-3e10e5a20a1b" />
 
 
-   *Then after cleaning the raw videos in `final_videos` folder*
+   *Then after cleaning the raw videos and storing them in `final_videos` folder using `01_videos_processing.py`*
 
+<img width="1331" height="460" alt="final_videos" src="https://github.com/user-attachments/assets/0923df1f-c6f8-4924-9f10-0a8b7f1ac532" />
 
    *Now , after using `ffmpeg` to convert all my videos to `.mp3` file for transcribing , I have stored all .mp3 files in `final_audios` folder to convert them later to .json file*
 
+<img width="940" height="447" alt="final_audios" src="https://github.com/user-attachments/assets/9e3bd482-2e9f-465d-b3bd-c8421ce6e725" />
 
 
-   *This is how my smaller chunks in `new_jsons` folder look like*
-
-
-
-   *Now, Combining all the smaller .json chunks from `new_jsons` folder to bigger chunks in `final_jsons` folder*
+   *This is how my smaller chunks in `new_jsons` folder look using `02_mp2_to_json.py`*
+<img width="1251" height="863" alt="smaller_chunks_(new_jsons)" src="https://github.com/user-attachments/assets/ea561346-7664-4fce-8187-856557f617c9" />
 
 
 
-   *Now, After preprocessing all .jsons file from `final_json` using 04_preprocess_json.py , I have converted them to embeddings and stored them in `final_embeddings.joblib` which will help us to retrieve using `cosine_similarity`*
+   *Now, Combining all the smaller .json chunks from `new_jsons` folder to bigger chunks in `final_jsons` folder using `03_merge_chunks.py`*
 
+<img width="1667" height="829" alt="biggerchunks_from_(final_jsons)" src="https://github.com/user-attachments/assets/c78ceadc-3a31-4070-859f-53659ea24c39" />
+
+
+   *Now, After preprocessing all .jsons file from `final_json` using `04_preprocess_json.py` , I have converted them to embeddings and stored them in `final_embeddings.joblib` which will help us to retrieve using `cosine_similarity`*
+
+<img width="237" height="30" alt="image" src="https://github.com/user-attachments/assets/1e47056d-6847-41f7-a0c4-4783830d9d6e" />
 
 
    *Now , After executing `05_final_output.py` , I have asked the question to the llm and the response gets stored in `response.txt`*
 
+Ask a question: Where is float and bar taught in this course
+Reponse:<img width="1447" height="331" alt="Screenshot 2025-11-28 113058" src="https://github.com/user-attachments/assets/3ec9e63b-fbac-4945-a620-3817906293a1" />
 
 
 ---
