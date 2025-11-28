@@ -105,6 +105,35 @@ These are ignored using `.gitignore` to prevent:
 This keeps your repo clean, legal, and easy for others to use.
 
 ---
+##  Here's how I have used this RAG ASSISTANT
+
+   *I have stored all my raw, un-cleaned videos in `video` folder*
+
+
+   *Then after cleaning the raw videos in `final_videos` folder*
+
+
+   *Now , after using `ffmpeg` to convert all my videos to `.mp3` file for transcribing , I have stored all .mp3 files in `final_audios` folder to convert them later to .json file*
+
+
+
+   *This is how my smaller chunks in `new_jsons` folder look like*
+
+
+
+   *Now, Combining all the smaller .json chunks from `new_jsons` folder to bigger chunks in `final_jsons` folder*
+
+
+
+   *Now, After preprocessing all .jsons file from `final_json` using 04_preprocess_json.py , I have converted them to embeddings and stored them in `final_embeddings.joblib` which will help us to retrieve using `cosine_similarity`*
+
+
+
+   *Now , After executing `05_final_output.py` , I have asked the question to the llm and the response gets stored in `response.txt`*
+
+
+
+---
 ##  Project Structure
 So , This is how I have structured the project :
 ```

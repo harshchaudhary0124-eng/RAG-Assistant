@@ -1,7 +1,9 @@
+# This code is for preprocessing yours videos in "video" folder , cleaning it , giving it a proper name
+# and then storing in "final_videos" folder which gets converted to .mp3 file in "final_audios" folder
+
 import os
 import shutil
 import subprocess
-
 
 def prepare_final_videos(input_folder: str = "video",
                         output_folder: str = "final_videos") -> None:
