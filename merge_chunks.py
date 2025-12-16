@@ -51,6 +51,12 @@ def merge_chunks_in_folder(
                     ensure_ascii=False,
                     indent=2)
 
+def main():
+    merge_chunks_in_folder()
 
 if __name__ == "__main__":
-    merge_chunks_in_folder()
+    main()
+    
+    
+# if __name__ == "__main__":
+#     merge_chunks_in_folder()

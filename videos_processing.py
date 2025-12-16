@@ -69,7 +69,20 @@ def extract_audio_from_videos(video_folder: str = "final_videos",
             check=False, 
         )
 
+def main():
+    print("\nPreparing videos")
+    prepare_final_videos()
+
+    print("\nExtracting audio")
+    extract_audio_from_videos()
+
+    print("Video processing completed.\n")
+
 
 if __name__ == "__main__":
-    prepare_final_videos()
-    extract_audio_from_videos()
+    main()
+    
+    
+# if __name__ == "__main__":
+#     prepare_final_videos()
+#     extract_audio_from_videos()

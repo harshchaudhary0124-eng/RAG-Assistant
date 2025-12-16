@@ -15,8 +15,10 @@ def create_embedding(text_list):
         json={
             "model": "bge-m3",
             "input": text_list
-        }
+        },
+        timeout=300,
     )
+    response.raise_for_status()
     return response.json()["embeddings"]
 
 
@@ -60,5 +62,12 @@ def process_json_files(input_folder: str = "final_jsons",
     print(f"\nSaved final embeddings to: {output_file}")
 
 
-if __name__ == "__main__":
+def main():
     process_json_files()
+
+if __name__ == "__main__":
+    main()    
+    
+    
+# if __name__ == "__main__":
+#     process_json_files()

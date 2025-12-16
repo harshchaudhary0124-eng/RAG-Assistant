@@ -59,5 +59,11 @@ def transcribe_audios_to_json(
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(chunks_with_metadata, f, ensure_ascii=False, indent=2)
 
-if __name__ == "__main__":
+def main():
     transcribe_audios_to_json()
+
+if __name__ == "__main__":
+    main()    
+    
+# if __name__ == "__main__":
+#     transcribe_audios_to_json()
