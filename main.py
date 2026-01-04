@@ -26,9 +26,9 @@ import final_output
 
 def run_step(step_name: str, step_func):
 
-    print("=" * 60)
+    
     print(f" {step_name}")
-    print("=" * 60)
+    
 
     start_time = time.time()
     try:
